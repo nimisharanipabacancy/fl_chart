@@ -387,12 +387,12 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
       }
 
       /// For drawing the indicator line
-      final lineStartY = min(
+      final lineStartY = max(
         data.maxY,
         max(data.minY, data.lineTouchData.getTouchLineStart(barData, index)),
       );
       final lineEndY = min(
-        data.maxY,
+        data.minY,
         max(data.minY, data.lineTouchData.getTouchLineEnd(barData, index)),
       );
       final lineStart =
