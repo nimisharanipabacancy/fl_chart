@@ -194,7 +194,16 @@ class SideTitlesWidget extends StatelessWidget {
               width: isHorizontal ? axisViewSize : sideTitles.reservedSize,
               height: isHorizontal ? sideTitles.reservedSize : axisViewSize,
               margin: thisSidePadding,
-              child: SideTitlesFlex(
+              child: Stack(
+                alignment: Alignment.centerLeft,
+                children: [
+                  Container(
+          
+                    width: axisViewSize - axisViewSize/axisMax,
+                    child: CustomPaint(
+                                painter: DashedLinePainter(),),
+                  ),
+                  SideTitlesFlex(
                 direction: direction,
                 axisSideMetaData: AxisSideMetaData(
                   axisMin,
@@ -207,6 +216,8 @@ class SideTitlesWidget extends StatelessWidget {
                   axisMax,
                   side,
                 ),
+                ),
+                ],
               ),
             ),
           if (isRightOrBottom && axisTitles.axisNameWidget != null)
@@ -259,4 +270,23 @@ class _AxisTitleWidget extends StatelessWidget {
       ),
     );
   }
+}
+  
+class DashedLinePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    double dashWidth = 9, dashSpace = 5, startX = 0;
+    final paint = Paint()
+      ..color = Colors.red
+      ..strokeWidth = 1;
+    while (startX < size.width) {
+      canvas.drawLine(Offset(startX, 0), Offset(startX + dashWidth, 0), paint);
+      startX += dashWidth + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
+}
+
 }
