@@ -125,23 +125,29 @@ class _SideTitleWidgetState extends State<SideTitleWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: !widget.fitInside.enabled
-          ? Offset.zero
-          : AxisChartHelper().calcFitInsideOffset(
-              axisSide: widget.axisSide,
-              childSize: _childSize,
-              parentAxisSize: widget.fitInside.parentAxisSize,
-              axisPosition: widget.fitInside.axisPosition,
-              distanceFromEdge: widget.fitInside.distanceFromEdge,
+    return Expanded(
+      child: Container(
+        //color: Colors.blue,
+        child: Transform.translate(
+          offset: !widget.fitInside.enabled
+              ? Offset.zero
+              : AxisChartHelper().calcFitInsideOffset(
+                  axisSide: widget.axisSide,
+                  childSize: _childSize,
+                  parentAxisSize: widget.fitInside.parentAxisSize,
+                  axisPosition: widget.fitInside.axisPosition,
+                  distanceFromEdge: widget.fitInside.distanceFromEdge,
+                ),
+          child: Transform.rotate(
+            angle: widget.angle,
+            child: Container(
+              color: Colors.yellow,
+              key: widgetKey,
+              margin: _getMargin(),
+              alignment: _getAlignment(),
+              child: widget.child,
             ),
-      child: Transform.rotate(
-        angle: widget.angle,
-        child: Container(
-          key: widgetKey,
-          margin: _getMargin(),
-          alignment: _getAlignment(),
-          child: widget.child,
+          ),
         ),
       ),
     );
