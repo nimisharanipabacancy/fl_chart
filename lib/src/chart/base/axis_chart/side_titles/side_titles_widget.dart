@@ -203,7 +203,11 @@ class SideTitlesWidget extends StatelessWidget {
                     child: CustomPaint(
                                 painter: DashedLinePainter(),),
                   ),
-                  SideTitlesFlex(
+                  Positioned(
+                    top: 0,
+                    left: 0,right: 0,
+                    bottom: 6,
+                    child: SideTitlesFlex(
                 direction: direction,
                 axisSideMetaData: AxisSideMetaData(
                   axisMin,
@@ -215,7 +219,7 @@ class SideTitlesWidget extends StatelessWidget {
                   axisMin,
                   axisMax,
                   side,
-                ),
+                ),),
                 ),
                 ],
               ),
