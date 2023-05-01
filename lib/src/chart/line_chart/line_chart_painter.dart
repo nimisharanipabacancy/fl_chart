@@ -391,7 +391,7 @@ class LineChartPainter extends AxisChartPainter<LineChartData> {
         data.maxY,
         max(data.minY, data.lineTouchData.getTouchLineStart(barData, index)),
       );
-      final lineEndY = min(
+      final lineEndY = max(
         data.maxY,
         max(data.minY, data.lineTouchData.getTouchLineEnd(barData, index)),
       );
